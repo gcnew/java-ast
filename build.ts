@@ -32,7 +32,7 @@ const getFiles = async (heads: { [key: string]: string }) =>
     await Promise.all(
       grammerFiles.map(async (file) => {
         const res = await fetch(
-          `https://raw.githubusercontent.com/antlr/grammars-v4/${heads[file]}/java/java/${file}`,
+          `https://raw.githubusercontent.com/gcnew/grammars-v4/${heads[file]}/java/java/${file}`,
         );
         const data = await res.text();
         return { [file]: data };

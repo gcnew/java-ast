@@ -6,6 +6,9 @@ import { TypeDeclarationContext } from "./JavaParser";
 import { ModifierContext } from "./JavaParser";
 import { ClassOrInterfaceModifierContext } from "./JavaParser";
 import { VariableModifierContext } from "./JavaParser";
+import { ExtendsListContext } from "./JavaParser";
+import { ImplementsListContext } from "./JavaParser";
+import { PermitsListContext } from "./JavaParser";
 import { ClassDeclarationContext } from "./JavaParser";
 import { TypeParametersContext } from "./JavaParser";
 import { TypeParameterContext } from "./JavaParser";
@@ -80,6 +83,7 @@ import { BlockContext } from "./JavaParser";
 import { BlockStatementContext } from "./JavaParser";
 import { LocalVariableDeclarationContext } from "./JavaParser";
 import { IdentifierContext } from "./JavaParser";
+import { TypeIdentifierContext } from "./JavaParser";
 import { LocalTypeDeclarationContext } from "./JavaParser";
 import { StatementContext } from "./JavaParser";
 import { CatchClauseContext } from "./JavaParser";
@@ -173,6 +177,24 @@ export interface JavaParserVisitor<Result> extends ParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitVariableModifier?: (ctx: VariableModifierContext) => Result;
+    /**
+     * Visit a parse tree produced by `JavaParser.extendsList`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitExtendsList?: (ctx: ExtendsListContext) => Result;
+    /**
+     * Visit a parse tree produced by `JavaParser.implementsList`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitImplementsList?: (ctx: ImplementsListContext) => Result;
+    /**
+     * Visit a parse tree produced by `JavaParser.permitsList`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitPermitsList?: (ctx: PermitsListContext) => Result;
     /**
      * Visit a parse tree produced by `JavaParser.classDeclaration`.
      * @param ctx the parse tree
@@ -617,6 +639,12 @@ export interface JavaParserVisitor<Result> extends ParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitIdentifier?: (ctx: IdentifierContext) => Result;
+    /**
+     * Visit a parse tree produced by `JavaParser.typeIdentifier`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitTypeIdentifier?: (ctx: TypeIdentifierContext) => Result;
     /**
      * Visit a parse tree produced by `JavaParser.localTypeDeclaration`.
      * @param ctx the parse tree

@@ -29,7 +29,7 @@ const getUpstreamHead = async () => {
     await Promise.all(
       grammerFiles.map(async (file) => {
         const res = await fetch(
-          `https://api.github.com/repos/antlr/grammars-v4/commits?path=java/java/${file}`,
+          `https://api.github.com/repos/gcnew/grammars-v4/commits?path=java/java/${file}`,
         );
         const commits = await res.json();
         return { [file]: commits[0].sha as string };

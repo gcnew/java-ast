@@ -6,6 +6,9 @@ import { TypeDeclarationContext } from "./JavaParser";
 import { ModifierContext } from "./JavaParser";
 import { ClassOrInterfaceModifierContext } from "./JavaParser";
 import { VariableModifierContext } from "./JavaParser";
+import { ExtendsListContext } from "./JavaParser";
+import { ImplementsListContext } from "./JavaParser";
+import { PermitsListContext } from "./JavaParser";
 import { ClassDeclarationContext } from "./JavaParser";
 import { TypeParametersContext } from "./JavaParser";
 import { TypeParameterContext } from "./JavaParser";
@@ -80,6 +83,7 @@ import { BlockContext } from "./JavaParser";
 import { BlockStatementContext } from "./JavaParser";
 import { LocalVariableDeclarationContext } from "./JavaParser";
 import { IdentifierContext } from "./JavaParser";
+import { TypeIdentifierContext } from "./JavaParser";
 import { LocalTypeDeclarationContext } from "./JavaParser";
 import { StatementContext } from "./JavaParser";
 import { CatchClauseContext } from "./JavaParser";
@@ -198,6 +202,36 @@ export interface JavaParserListener extends ParseTreeListener {
      * @param ctx the parse tree
      */
     exitVariableModifier?: (ctx: VariableModifierContext) => void;
+    /**
+     * Enter a parse tree produced by `JavaParser.extendsList`.
+     * @param ctx the parse tree
+     */
+    enterExtendsList?: (ctx: ExtendsListContext) => void;
+    /**
+     * Exit a parse tree produced by `JavaParser.extendsList`.
+     * @param ctx the parse tree
+     */
+    exitExtendsList?: (ctx: ExtendsListContext) => void;
+    /**
+     * Enter a parse tree produced by `JavaParser.implementsList`.
+     * @param ctx the parse tree
+     */
+    enterImplementsList?: (ctx: ImplementsListContext) => void;
+    /**
+     * Exit a parse tree produced by `JavaParser.implementsList`.
+     * @param ctx the parse tree
+     */
+    exitImplementsList?: (ctx: ImplementsListContext) => void;
+    /**
+     * Enter a parse tree produced by `JavaParser.permitsList`.
+     * @param ctx the parse tree
+     */
+    enterPermitsList?: (ctx: PermitsListContext) => void;
+    /**
+     * Exit a parse tree produced by `JavaParser.permitsList`.
+     * @param ctx the parse tree
+     */
+    exitPermitsList?: (ctx: PermitsListContext) => void;
     /**
      * Enter a parse tree produced by `JavaParser.classDeclaration`.
      * @param ctx the parse tree
@@ -938,6 +972,16 @@ export interface JavaParserListener extends ParseTreeListener {
      * @param ctx the parse tree
      */
     exitIdentifier?: (ctx: IdentifierContext) => void;
+    /**
+     * Enter a parse tree produced by `JavaParser.typeIdentifier`.
+     * @param ctx the parse tree
+     */
+    enterTypeIdentifier?: (ctx: TypeIdentifierContext) => void;
+    /**
+     * Exit a parse tree produced by `JavaParser.typeIdentifier`.
+     * @param ctx the parse tree
+     */
+    exitTypeIdentifier?: (ctx: TypeIdentifierContext) => void;
     /**
      * Enter a parse tree produced by `JavaParser.localTypeDeclaration`.
      * @param ctx the parse tree
