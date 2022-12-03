@@ -43,6 +43,7 @@ import { VariableDeclaratorIdContext } from "./JavaParser";
 import { VariableInitializerContext } from "./JavaParser";
 import { ArrayInitializerContext } from "./JavaParser";
 import { ClassOrInterfaceTypeContext } from "./JavaParser";
+import { TypeRefContext } from "./JavaParser";
 import { TypeArgumentContext } from "./JavaParser";
 import { QualifiedNameListContext } from "./JavaParser";
 import { FormalParametersContext } from "./JavaParser";
@@ -83,7 +84,6 @@ import { BlockContext } from "./JavaParser";
 import { BlockStatementContext } from "./JavaParser";
 import { LocalVariableDeclarationContext } from "./JavaParser";
 import { IdentifierContext } from "./JavaParser";
-import { TypeIdentifierContext } from "./JavaParser";
 import { LocalTypeDeclarationContext } from "./JavaParser";
 import { StatementContext } from "./JavaParser";
 import { CatchClauseContext } from "./JavaParser";
@@ -573,6 +573,16 @@ export interface JavaParserListener extends ParseTreeListener {
      */
     exitClassOrInterfaceType?: (ctx: ClassOrInterfaceTypeContext) => void;
     /**
+     * Enter a parse tree produced by `JavaParser.typeRef`.
+     * @param ctx the parse tree
+     */
+    enterTypeRef?: (ctx: TypeRefContext) => void;
+    /**
+     * Exit a parse tree produced by `JavaParser.typeRef`.
+     * @param ctx the parse tree
+     */
+    exitTypeRef?: (ctx: TypeRefContext) => void;
+    /**
      * Enter a parse tree produced by `JavaParser.typeArgument`.
      * @param ctx the parse tree
      */
@@ -972,16 +982,6 @@ export interface JavaParserListener extends ParseTreeListener {
      * @param ctx the parse tree
      */
     exitIdentifier?: (ctx: IdentifierContext) => void;
-    /**
-     * Enter a parse tree produced by `JavaParser.typeIdentifier`.
-     * @param ctx the parse tree
-     */
-    enterTypeIdentifier?: (ctx: TypeIdentifierContext) => void;
-    /**
-     * Exit a parse tree produced by `JavaParser.typeIdentifier`.
-     * @param ctx the parse tree
-     */
-    exitTypeIdentifier?: (ctx: TypeIdentifierContext) => void;
     /**
      * Enter a parse tree produced by `JavaParser.localTypeDeclaration`.
      * @param ctx the parse tree

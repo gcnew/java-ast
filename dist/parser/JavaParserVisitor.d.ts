@@ -43,6 +43,7 @@ import { VariableDeclaratorIdContext } from "./JavaParser";
 import { VariableInitializerContext } from "./JavaParser";
 import { ArrayInitializerContext } from "./JavaParser";
 import { ClassOrInterfaceTypeContext } from "./JavaParser";
+import { TypeRefContext } from "./JavaParser";
 import { TypeArgumentContext } from "./JavaParser";
 import { QualifiedNameListContext } from "./JavaParser";
 import { FormalParametersContext } from "./JavaParser";
@@ -83,7 +84,6 @@ import { BlockContext } from "./JavaParser";
 import { BlockStatementContext } from "./JavaParser";
 import { LocalVariableDeclarationContext } from "./JavaParser";
 import { IdentifierContext } from "./JavaParser";
-import { TypeIdentifierContext } from "./JavaParser";
 import { LocalTypeDeclarationContext } from "./JavaParser";
 import { StatementContext } from "./JavaParser";
 import { CatchClauseContext } from "./JavaParser";
@@ -400,6 +400,12 @@ export interface JavaParserVisitor<Result> extends ParseTreeVisitor<Result> {
      */
     visitClassOrInterfaceType?: (ctx: ClassOrInterfaceTypeContext) => Result;
     /**
+     * Visit a parse tree produced by `JavaParser.typeRef`.
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    visitTypeRef?: (ctx: TypeRefContext) => Result;
+    /**
      * Visit a parse tree produced by `JavaParser.typeArgument`.
      * @param ctx the parse tree
      * @return the visitor result
@@ -639,12 +645,6 @@ export interface JavaParserVisitor<Result> extends ParseTreeVisitor<Result> {
      * @return the visitor result
      */
     visitIdentifier?: (ctx: IdentifierContext) => Result;
-    /**
-     * Visit a parse tree produced by `JavaParser.typeIdentifier`.
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    visitTypeIdentifier?: (ctx: TypeIdentifierContext) => Result;
     /**
      * Visit a parse tree produced by `JavaParser.localTypeDeclaration`.
      * @param ctx the parse tree
